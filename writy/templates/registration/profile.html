@@ -1,0 +1,102 @@
+{% extends 'registration/base.html' %} {% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <p class="nav-link active fw-bold title" aria-current="page">
+                                <i class="bi bi-house-heart "></i>
+                                {{ user.get_username }}
+                            </p>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="{% url 'articles' user.id %}">
+                                <i class="bi bi-journal-check"></i>
+                                Articles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="#">
+                                <i class="bi bi-book"></i>
+                                Drafts
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="#">
+                                <i class="bi bi-bookmark-check"></i>
+                                Published
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col  col-lg-8 mb-4 mb-lg-0">
+                        <div class="card mb-3" style="border-radius: 0.5rem">
+                            <div class="row ">
+                                <div
+                                        class="col-md-4 gradient-custom text-center"
+                                        style="
+                border-top-left-radius: 0.5rem;
+                border-bottom-left-radius: 0.5rem;
+              "
+                                >
+                                    <img
+                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                            alt="Avatar"
+                                            class="img-fluid my-5"
+                                            style="width: 80px"
+                                    />
+                                    <h5 class="title">{{ user.get_username }}</h5>
+                                    <p class="title">Writer</p>
+                                    Edit Profile <i class="bi bi-pencil-square mb-5 fw-bold"></i>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body p-4">
+                                        <h6 class="title">About Information</h6>
+                                        <hr class="mt-0 mb-4"/>
+                                        <div class="row pt-1">
+                                            <div class="col-6 mb-3">
+                                                <h6>Email</h6>
+                                                <p class="text-muted">{{ user.email }}</p>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <h6>Phone</h6>
+                                                <p class="text-muted">123 456 789</p>
+                                            </div>
+                                        </div>
+                                        <h6>Articles</h6>
+                                        <hr class="mt-0 mb-4"/>
+                                        <div class="row pt-1">
+                                            <div class="col-6 mb-3">
+                                                <h6>Recent Articles</h6>
+                                                <p class="text-muted">{{ articles|length }}</p>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <h6>Most Viewed</h6>
+                                                <p class="text-muted">12</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-start">
+                                            <a href="#!" class="fw-bold"
+                                            ><i class="bi bi-facebook bi-lg me-3"></i
+                                            ></a>
+                                            <a href="#!" class="fw-bold"
+                                            ><i class="bi bi-twitter bi-lg me-3"></i
+                                            ></a>
+                                            <a href="#!" class="fw-bold"
+                                            ><i class="bi bi-instagram bi-lg"></i
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </main>
+    </div>
+{% endblock %}
