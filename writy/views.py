@@ -118,9 +118,12 @@ def subscribe(request):
 
         subscriber = Subscriber(email=email)
         subscriber.save()
-
+        categories = Topic.objects.all()
         context = {}
         context['message'] = "You have now part of the Scratch family, Thank you!"
+        context['categories'] = categories
+
+        
 
         return render(request, 'writy/home.html', context)
     else:
