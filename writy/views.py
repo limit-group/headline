@@ -22,11 +22,11 @@ def home(request):
 # All articles for a given author
 
 def articles(request, pk):
-  
+    categories = Topic.objects.all()
     author = get_object_or_404(User, pk=pk)
     articles = Article.objects.filter(author=author, status=1).order_by('-created_on')
 
-    return render(request, 'article/articles.html', {'articles': articles})
+    return render(request, 'article/articles.html', {'articles': articles, 'categories': categories})
 
 
 
@@ -81,8 +81,9 @@ def draft_publish(request, pk, article_pk):
     author = get_object_or_404(User, pk=pk)
     articles = Article.objects.filter(author=author, status=0).order_by('-created_on')
     Article.objects.filter(author=author, pk=article_pk).update(status=1)
+    categories = Topic.objects.all()
 
-    return render(request, 'article/drafts.html', {'articles': articles})
+    return render(request, 'article/drafts.html', {'articles': articles, 'categories': categories})
 
 
 
@@ -122,7 +123,8 @@ def subscribe(request):
 # Terms of Service.
 
 def terms(request):
-    return render(request, 'writy/terms.html')
+    categories = Topic.objects.all()
+    return render(request, 'writy/terms.html', {'categories': categories})
 
 # User Registration.
 

@@ -3,7 +3,7 @@
 <div class="text-center">
   <h1 class="title">
     Start drafting now
-    <a href="{% url 'article_new'  %}" class="btn btn-outline-light fw-bold">
+    <a href="{% url 'article_new'  %}" class="btn btn-primary">
       new article.
     </a>
   </h1>
@@ -72,9 +72,16 @@
                           Edit
                         </button>
 
-                        <form action="{{ base_url }}/drafts/{{user.id}}/update/{{article.id}}/" method="POST">
+                        <form
+                          action="{{ base_url }}/drafts/{{user.id}}/update/{{article.id}}/"
+                          method="POST"
+                        >
                           {% csrf_token %}
-                          <input value="{{ article.status }}" name="status" type="hidden" />
+                          <input
+                            value="{{ article.status }}"
+                            name="status"
+                            type="hidden"
+                          />
                           <button
                             type="submit"
                             class="btn btn-sm btn-outline-secondary"
@@ -89,109 +96,11 @@
                 </div>
               </div>
               {% endfor %} {% else %}
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img
-                    class="card-img-top"
-                    src="https://images.pexels.com/photos/851213/pexels-photo-851213.jpeg?cs=srgb&dl=pexels-lisa-fotios-851213.jpg&fm=jpg"
-                  />
-                  <div class="card-body">
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          View
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                      <small class="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img
-                    class="card-img-top"
-                    src="https://images.pexels.com/photos/851213/pexels-photo-851213.jpeg?cs=srgb&dl=pexels-lisa-fotios-851213.jpg&fm=jpg"
-                  />
-
-                  <div class="card-body">
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          View
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                      <small class="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <img
-                    class="card-img-top"
-                    src="https://images.pexels.com/photos/851213/pexels-photo-851213.jpeg?cs=srgb&dl=pexels-lisa-fotios-851213.jpg&fm=jpg"
-                  />
-
-                  <div class="card-body">
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          View
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                      <small class="text-muted">9 mins</small>
-                    </div>
-                  </div>
-                </div>
+              <div class="text-center bg-white">
+                <img
+                  src="{{base_url}}/static/img/not_found.svg"
+                  alt="not found"
+                />
               </div>
               {% endif %}
             </div>
