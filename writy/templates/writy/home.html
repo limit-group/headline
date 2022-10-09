@@ -1,13 +1,12 @@
 {% extends 'writy/base.html' %} {% block content %}
 <div>
   <main class="container">
-
+    {% if message %}
     <div class="alert alert-success">
-        {% if message %}
-        <span class="title">{{ message }} </span>
-        {% endif %}
+      <span class="title">{{ message }} </span>
     </div>
-    
+    {% endif %}
+
     <div class="p-4 p-md-5 mb-4 rounded bg-dar">
       <div class="col-md-6 px-0">
         <h1 class="display-4 fst-italic">
