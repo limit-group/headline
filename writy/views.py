@@ -120,7 +120,7 @@ def subscribe(request):
         subscriber.save()
 
         context = {}
-        context['message'] = "You have joined a bigger family, Thank you"
+        context['message'] = "You have now part of the Scratch family, Thank you!"
 
         return render(request, 'writy/home.html', context)
     else:
