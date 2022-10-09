@@ -1,9 +1,10 @@
-
 from django.shortcuts import get_object_or_404,  render
 from django.contrib.auth import logout
 from writy.models import Article, Topic, Subscriber, Comment
 from django.contrib.auth.models import User
 
+
+# 404 Page
 
 def error_404(request, exception):
     return render(request, 'writy/404.html')
