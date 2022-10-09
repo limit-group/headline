@@ -156,7 +156,9 @@ def profile(request):
 # Logout.
 
 def logout_view(request):
+    categories = Topic.objects.all()
     logout(request)
     # Redirect to a success page.
-    return render(request, 'registration/logged_out.html')
+   
+    return render(request, 'registration/logged_out.html', {'categories': categories})
 

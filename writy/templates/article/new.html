@@ -36,7 +36,7 @@
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="text-center">
-        <h1 class="title">Start drafting now, Publish when you feel like</h1>
+        <h1 class="title">Draft now, Publish when you feel like &#128540;</h1>
 
         <form action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
@@ -47,7 +47,6 @@
               class="form-control"
               id="floatingInput"
               name="title"
-              
             />
             <label for="floatingInput">Article Title</label>
           </div>
@@ -65,15 +64,17 @@
               </div>
             </div>
             <div class="col">
-                <div class="form-floating">
+              <div class="form-floating">
                 <select name="topic" class="form-control">
-                    <option value="">--Select Topic-</option>
-                    {% for category in categories %}
-                    <option value="{{ category.id }}"> {{ category.title }}</option>
-                    {% endfor %}
+                  <option value="">--Select Topic-</option>
+                  {% for category in categories %}
+                  <option value="{{ category.id }}">
+                    {{ category.title }}
+                  </option>
+                  {% endfor %}
                 </select>
                 <label for="floatingInput">Article Topic</label>
-            </div>
+              </div>
             </div>
           </div>
 
@@ -85,6 +86,13 @@
       </div>
     </main>
   </div>
+  <br />
+  <h1 class="title text-center">
+    Go Back
+    <a href="{% url 'profile'  %}" class="btn btn-primary">
+      <i class="bi bi-arrow-left-square"></i>
+    </a>
+  </h1>
 </div>
 
 {% endblock %}
