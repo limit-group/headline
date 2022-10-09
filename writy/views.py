@@ -18,6 +18,13 @@ def home(request):
     return render(request, 'writy/home.html', {'categories': categories})
 
 
+def topics(request, slug):
+    categories = Topic.objects.all()
+    topic = get_object_or_404(Topic, slug=slug)
+    articles = Article.objects.filter(topic=topic, status=1).order_by('-created_on')
+
+    return render(request, 'writy/articles.html', {'articles': articles, 'categories': categories})
+
 
 # All articles for a given author
 
