@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2k19(%x!*vhpyya4$j=o!0lz)l6o0(8b5#+&4utd&ci)zox@3^
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1']
 
 # CORS_ORIGIN_WHITELIST = [
 #     'http://localhost:3000',
@@ -146,6 +146,8 @@ EMAIL_PORT = '587'
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'crud3swift@gmail.com'
 EMAIL_HOST_PASSWORD = 'ulhepvoxgfpnkfwd'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -158,3 +160,4 @@ STATIC_ROOT = BASE_DIR / 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
