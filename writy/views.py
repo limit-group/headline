@@ -1,10 +1,11 @@
+
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.conf import settings
 from django.shortcuts import get_object_or_404,  render
 from django.contrib.auth import logout
 from writy.models import Article, Topic, Subscriber, Comment
 from django.contrib.auth.models import User
-from .forms import SignUpForm
+from .forms import ArticleForm, CommentForm, ContactForm, SignUpForm, SubscribeForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
@@ -67,26 +68,64 @@ def article(request, slug):
 # Create a new article.
 
 def article_new(request):
+
+    context = {}
+    categories = Topic.objects.all()
+    context['categories'] = categories
+
+    if request.method == 'GET':
+        return render(request, 'article/new.html', context)
+
     if request.method == 'POST':
-        title = request.POST['title']
-        author = request.user
-        slug = title.replace(" ", "-")
-        content = request.POST['editor']
-        image = request.FILES['image']
-        topic = request.POST['topic']
+        form = ArticleForm(request.POST, request.FILES)
+        # print(form.errors)
+        if form.is_valid():
 
-        topic1 = get_object_or_404(Topic, pk=topic)
-        article = Article(title=title, author=author, slug=slug, content=content, image=image, topic=topic1)
-        article.save()
+            article = form.save(commit=False)
+            article.author = request.user
+            article.slug = article.title.replace(" ", "-")
+            article.save()
 
-        context = {}
-        context['success'] = "Succcessfuly Posted an article, Head over to publish!"
 
-        return render(request, 'article/new.html')
+            context['success'] = "Succcessfuly Posted an article, Head over to publish!"
+            return render(request, 'article/new.html', context)
+
     else:
+        form = ArticleForm()
+    return render(request, 'article/new.html', { 'form' : form})
 
-        categories = Topic.objects.all()
-        return render(request, 'article/new.html', {'categories': categories})
+
+def article_edit(request, slug):
+
+    context = {}
+    categories = Topic.objects.all()
+    article = get_object_or_404(Article, slug=slug)
+    context['article'] = article
+    context['categories'] = categories
+
+    if request.method == 'GET':
+        return render(request, 'article/edit.html', context)
+
+    if request.method == 'PUT':
+
+        form = ArticleForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+
+            article = form.save(commit=False)
+            article.author = request.user
+            article.slug = article.title.replace(" ", "-")
+            article.save()
+
+
+            context['success'] = "Successfuly edit an article, Head over to publish!"
+            return render(request, 'article/edit.html', context)
+
+    else:
+        form = ArticleForm()
+
+    return render(request, 'article/edit.html', { 'form' : form })
+
 
 
 # List of draft Articles.
@@ -114,37 +153,89 @@ def draft_publish(request, pk, article_pk):
 #  Comment on an article. 
 
 def comment(request, article_pk):
-    # if request.method == 'POST':
-    comment = request.POST['comment']
-    article = get_object_or_404(Article, pk=article_pk)
-    author = request.user
-    comment = Comment(comment=comment, article=article, author=author)
-    comment.save()
+    if request.method == 'POST':
+        article = get_object_or_404(Article, pk=article_pk)
+        categories = Topic.objects.all()
+
+        form = CommentForm(request.POST)
+        if form.is_valid():
+
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.article = article
+            comment.save()
+            success = "your comment was posted!"
+
+            return render(request, 'writy/article.html', {'article': article, 'categories': categories, 'success': success})
+
+    else:
+
+        form = CommentForm()
+
+    return render(request, 'writy/article.html', {'article': article, 'categories': categories, 'form': form})
+     
+
+# User 
+
+def contact_view(request):
 
     categories = Topic.objects.all()
 
-    return render(request, 'writy/article.html', {'article': article, 'categories': categories})
+    if request.method == 'GET':
 
+        return render(request, 'writy/contact.html', {'categories': categories})
+
+    if request.method == 'POST':
+
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+
+            form.save()
+
+            categories = Topic.objects.all()
+            context = {}
+            context['message'] = "We have recieved your message, Thank you!"
+            context['categories'] = categories
+
+            return render(request, 'writy/home.html', context)
+
+    else:
+
+        form = ContactForm()
+
+    return render(request, 'writy/contact.html', {'form' : form, 'categories': categories})
 
 
 # Subscribe to newsletter
 
 def subscribe(request):
+
+    if request.method == 'GET':
+        return render(request, 'writy/subscribe.html')
+
     if request.method == 'POST':
-        email = request.POST['email']
 
-        subscriber = Subscriber(email=email)
-        subscriber.save()
-        categories = Topic.objects.all()
-        context = {}
-        context['message'] = "You have now part of the Scratch family, Thank you!"
-        context['categories'] = categories
+        form = SubscribeForm(request.POST)
 
+        if form.is_valid():
+
+            form.save()
+            categories = Topic.objects.all()
+            context = {}
+            context['message'] = "You have now part of the Scratch family, Thank you!"
+            context['categories'] = categories
+
+            return render(request, 'writy/home.html', context)
+
+        else:
+
+            form = SubscribeForm()
+
+    return render(request, 'writy.subscribe.html', {'form': form})
         
 
-        return render(request, 'writy/home.html', context)
-    else:
-        return render(request, 'writy/subscribe.html')
+        
 
 
 # Terms of Service.

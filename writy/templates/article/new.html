@@ -8,7 +8,11 @@
       <div class="position-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active fw-bold title" aria-current="page" href="{% url 'profile' %}">
+            <a
+              class="nav-link active fw-bold title"
+              aria-current="page"
+              href="{% url 'profile' %}"
+            >
               <i class="bi bi-house-heart"></i>
               {{ user.get_username }}
             </a>
@@ -35,6 +39,21 @@
       </div>
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="container">
+        
+        
+        {% if form.errors %}
+        <div class="alert alert-danger">
+          <span class="title">{{ form.errors }} </span>
+        </div>
+        {% endif %}
+
+        {% if success %}
+        <div class="alert alert-success text-center">
+          <span class="title">{{ success }} </span>
+        </div>
+        {% endif %}
+      </div>
       <div class="text-center">
         <h1 class="title">Draft now, Publish when you feel like &#128540;</h1>
 
@@ -79,7 +98,7 @@
           </div>
 
           <br />
-          <textarea id="editor" name="editor"></textarea>
+          <textarea id="editor" name="content"></textarea>
           <br />
           <button class="w-100 btn btn-primary" type="submit">SAVE</button>
         </form>

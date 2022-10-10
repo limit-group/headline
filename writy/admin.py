@@ -1,5 +1,5 @@
 from django.contrib import admin
-from writy.models import Article, Comment, Subscriber, Topic
+from writy.models import Article, Comment, Contact, Subscriber, Topic
 
 
 # Register your models here.
@@ -22,3 +22,4 @@ admin.site.register(Article, ArticleAdmin)
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Comment)
 admin.site.register(Subscriber)
+admin.site.register(Contact)

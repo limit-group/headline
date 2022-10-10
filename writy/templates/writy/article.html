@@ -130,6 +130,18 @@
             Tell the writer what you think or simply share your thoughts on the
             topic!
           </p>
+          <div class="container">
+            {% if form.errors %}
+            <div class="alert alert-danger">
+              <span class="title">{{ form.errors }}</span>
+            </div>
+            {% endif %} 
+            {% if success %}
+            <div class="alert alert-success text-center">
+              <span class="title">{{ success }} &#128549;</span>
+            </div>
+            {% endif %}
+          </div>
           <form action="{% url 'comment' article.id %}" method="POST">
             {% csrf_token %}
             <div class="row">

@@ -32,6 +32,7 @@
     <style>
       body {
         font-family: "Nunito", sans-serif !important;
+        background-color: #ffffff;
       }
 
       section {
@@ -674,7 +675,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <b><i class="bi bi-person-square"></i>{{ user.get_username}}</b
+                  <b><i class="bi bi-person-square"></i> {{ user.get_username}}</b
                   >
                 </button>
                 <ul class="dropdown-menu">
@@ -723,9 +724,9 @@
     {% block content %} {% endblock %}
     <footer class="footer mt-auto py-3 blog_head">
       <div class="container text-white text-center">
-        <span
-          >Express yourself freely. <br />
-          Limit Group &copy; 2022</span
+        <span class="title"
+          >Express yourself freely. | 
+          Scratch &copy; 2022 | <a href="{% url 'terms' %}">T & Cs</a> | <a href="{% url 'contact' %}">Contact</a> </span
         >
       </div>
     </footer>
