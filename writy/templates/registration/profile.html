@@ -8,10 +8,10 @@
       <div class="position-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <p class="nav-link active fw-bold title" aria-current="page">
+            <a class="nav-link active fw-bold title" aria-current="page" href="{% url 'profile' %}">
               <i class="bi bi-house-heart"></i>
               {{ user.get_username }}
-            </p>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link fw-bold" href="{% url 'articles' user.id %}">
@@ -35,6 +35,14 @@
       </div>
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      {% if user.is_active == False %}
+      <div class="alert alert-success text-center">
+        <span class="title"
+          >Dear {{ user.get_username}} Check you email and complete email
+          verification to be able to draft and publish your articles.</span
+        >
+      </div>
+      {% endif %}
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-lg-8 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: 0.5rem">

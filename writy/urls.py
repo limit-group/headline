@@ -11,10 +11,11 @@ urlpatterns = [
     path('articles/<slug:slug>/', views.article, name="article"),
     path('drafts/<int:pk>/', views.drafts, name="drafts"),
     path('drafts/<int:pk>/update/<int:article_pk>/', views.draft_publish, name="draft_publish"),
-    path('register/', views.register, name='register'),
+    path('register/', views.signup, name='register'),
     path('logout/', views.logout_view, name="logout"),
     path('accounts/profile/', views.profile, name="profile"),
     path('subscribe/', views.subscribe, name="subscribe"),
     path('comment/<int:article_pk>/', views.comment, name="comment"),
-    path('terms-and-conditions/', views.terms, name="terms")
+    path('terms-and-conditions/', views.terms, name="terms"),
+    path('activate/<uidb64>/<token>/',views.activate, name='activate'),
 ]

@@ -1,8 +1,82 @@
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.conf import settings
 from django.shortcuts import get_object_or_404,  render
 from django.contrib.auth import logout
 from writy.models import Article, Topic, Subscriber, Comment
 from django.contrib.auth.models import User
+from .forms import SignUpForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.core.mail import send_mail
+# from .tokens import account_activation_token
 
+UserModel = get_user_model()
+
+
+def signup(request):
+    if request.method == 'GET':
+        return render(request, 'registration/signup.html')
+
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your account.'
+            mail_subject1 = 'Welcome to Scratch!'
+
+            message = render_to_string('registration/activate_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            })
+            message1 = render_to_string('registration/thank_you.html', {
+                'user': user,
+            })
+
+            to_email = form.cleaned_data.get('email')
+            from_email = settings.EMAIL_HOST_USER
+
+            send_mail(mail_subject1, message1, from_email, [to_email], fail_silently=False,)
+            send_mail(mail_subject, message, from_email, [to_email], fail_silently=False,)
+            
+
+            context = {}
+            context['message'] =  'Please confirm your email address to complete the registration'
+            return render(request, 'registration/confirm_email.html', context)
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+# Activate Email
+
+def activate(request, uidb64, token):
+    context = {}
+
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = UserModel._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        
+        context['message'] = 'Thank you for your email confirmation. Now you can login your account.'
+        return render(request, 'registration/login.html', context)
+
+    else:
+
+        context['message'] = 'Activation Link is Invalid, Sorry!'
+        return render(request, 'registration/oops.html', context)
 
 # 404 Page
 
