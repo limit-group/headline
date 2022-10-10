@@ -20,7 +20,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
       rel="stylesheet"
@@ -28,7 +31,7 @@
     <title>Scratch</title>
     <style>
       body {
-        font-family: 'Nunito', sans-serif !important; 
+        font-family: "Nunito", sans-serif !important;
       }
 
       section {
@@ -659,7 +662,7 @@
             </div>
             <div class="col-4 text-center">
               <a class="blog-header-logo" href="{% url 'home' %}">
-                <b>Scratch</b>
+                <h3>Scratch</h3>
               </a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
@@ -671,8 +674,7 @@
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <small
-                    ><i class="bi bi-person-square"></i> {{ user.get_username }}</small
+                  <b><i class="bi bi-person-square"></i>{{ user.get_username}}</b
                   >
                 </button>
                 <ul class="dropdown-menu">
@@ -682,7 +684,9 @@
                     >
                   </li>
                   <li>
-                    <a class="btn btn-sm" href="{% url 'logout' %}"> Logout </a>
+                    <a class="btn btn-sm" href="{% url 'logout' %}">
+                      <b>Logout </b></a
+                    >
                   </li>
                 </ul>
               </div>
