@@ -17,13 +17,15 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.18.9/jodit.es2018.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.18.9/jodit.es2018.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link
       href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
       rel="stylesheet"
@@ -31,8 +33,9 @@
     <title>Headline</title>
     <style>
       body {
-        font-family: "Poppins", sans-serif !important;
-        background-color: #ffffff;
+        font-family: "Josefin Sans", sans-serif !important;
+        background-color: #ffffff !important;
+        font-size: 1.25rem !important;
       }
 
       section {
@@ -706,7 +709,8 @@
                   aria-expanded="false"
                 >
                   <b
-                    ><i class="bi bi-person-square"></i> {{user.get_username}}</b
+                    ><i class="bi bi-person-square"></i>
+                    {{user.get_username}}</b
                   >
                 </button>
                 <ul class="dropdown-menu">
@@ -752,26 +756,11 @@
         </div>
       </div>
     </div>
-    {% comment %}
-    <div class="cookie-consent title">
-      <span
-        >This site uses cookies to enhance user experience. see<a
-          href="#"
-          class="ml-1 text-decoration-none"
-          >Privacy policy</a
-        >
-      </span>
-      <div
-        class="mt-2 mb-3 d-flex align-items-center justify-content-center g-2"
-      >
-        <button class="allow-button mr-3">Allow cookies</button>
+    {% block content %} {% endblock %}
 
-        <button class="allow-button">cancel</button>
-      </div>
-    </div>
-    {% endcomment %} {% block content %} {% endblock %}
-
-    
+    <script>
+      var editor = Jodit.make("#editor",{ height: 300 });
+    </script>
     <script></script>
     <!-- JavaScript Bundle with Popper -->
     <script
