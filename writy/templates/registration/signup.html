@@ -2,13 +2,13 @@
 
 <div>
   <main class="form-signin">
-    {% if form.non_field_errors %}
-    <ul class="form-errors">
-      {% for error in form.non_field_errors %}
-      <li>{{ error }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+    <div class="container">
+      {% if form.errors %}
+      <div class="alert alert-danger">
+        <span class="title">{{ form.errors }}</span>
+      </div>
+      {% endif %}
+    </div>
     <form action="" method="POST">
       {% csrf_token %}
       <h1 class="h3 mb-3 fw-normal title">Create a Free Account</h1>
@@ -40,7 +40,7 @@
       <div class="form-floating">
         <input
           type="password"
-          name="password"
+          name="password1"
           class="form-control"
           id="floatingPassword"
           placeholder="Password"
@@ -49,9 +49,23 @@
         <label for="floatingPassword">Password</label>
       </div>
 
+      <br />
+      <div class="form-floating">
+        <input
+          type="password"
+          name="password2"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          required
+        />
+        <label for="floatingPassword">Confirm Password</label>
+      </div>
+
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me" required/> I agree to Writy's
+          <input type="checkbox" value="remember-me" required /> I agree to
+          Writy's
           <a href="{% url 'terms' %}" style="color: #ef5b25 !important"
             >Terms and Conditions</a
           >
