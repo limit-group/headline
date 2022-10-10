@@ -48,7 +48,7 @@
         <div class="alert alert-success text-center">
           <span class="title"
             >{{ success }}
-            <a href="{% url 'drafts' user.id %}" class="fw-bold"
+            <a href="{% url 'articles' user.id %}" class="fw-bold"
               ><i class="bi bi-arrow-right-square"></i></a
           ></span>
         </div>
@@ -56,7 +56,11 @@
       </div>
       <div class="text-center">
         <h1 class="title">Draft now, Publish when you feel like &#128540;</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form
+          action="{{ base_url}}/articles/{{ article.id }}/edit/"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           {% csrf_token %}
 
           <div class="form-floating">
@@ -65,7 +69,7 @@
               class="form-control"
               id="floatingInput"
               name="title"
-              value="{{ form.title.value }}"
+              value="{{ article.title }}"
             />
             <label for="floatingInput">Article Title</label>
           </div>
@@ -78,14 +82,18 @@
                   class="form-control"
                   id="image"
                   name="image"
-                  value="{{ form.image.value }}"
+                  value="{{ article.image }}"
                 />
                 <label for="floatingInput">Article cover</label>
               </div>
             </div>
             <div class="col">
               <div class="form-floating">
-                <select name="topic" class="form-control">
+                <select
+                  name="topic"
+                  class="form-control"
+                  value="{{ article.topic }}"
+                >
                   <option value="">--Select Topic-</option>
                   {% for category in categories %}
                   <option value="{{ category.id }}">
@@ -99,9 +107,7 @@
           </div>
 
           <br />
-          <textarea id="editor" name="content">
-{{ form.content.value }}</textarea
-          >
+          <textarea id="editor" name="content">{{ article.content }}</textarea>
           <br />
           <button class="w-100 btn btn-primary" type="submit">SAVE</button>
         </form>

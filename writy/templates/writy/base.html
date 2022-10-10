@@ -21,17 +21,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400&family=Open+Sans:wght@300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap"
       rel="stylesheet"
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Scratch</title>
+    <title>Headline</title>
     <style>
       body {
-        font-family: "Nunito", sans-serif !important;
+        font-family: "Poppins", sans-serif !important;
         background-color: #ffffff;
       }
 
@@ -649,6 +649,36 @@
         color: #ef5b25 !important;
         text-decoration: underline;
       }
+
+      .cookie-consent {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 260px;
+        padding-top: 7px;
+        height: 103px;
+        color: #fff;
+
+        line-height: 20px;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 14px;
+        background: #ef5b25;
+        z-index: 120;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+
+      .allow-button {
+        height: 20px;
+        width: 104px;
+        color: #ef5b25;
+        font-size: 12px;
+        line-height: 10px;
+        border-radius: 3px;
+        border: 1px solid #ffffff;
+        background-color: #ffffff;
+      }
     </style>
   </head>
   <body>
@@ -658,30 +688,32 @@
           <div
             class="row flex-nowrap justify-content-between align-items-center"
           >
-            <div class="col-4 pt-1">
+            <div class="col-4 pt-1 d-lg-flex d-none">
               <a class="" href="{% url 'subscribe' %}"> Subscribe </a>
             </div>
             <div class="col-4 text-center">
               <a class="blog-header-logo" href="{% url 'home' %}">
-                <h3>Scratch</h3>
+                <h3>Headline</h3>
               </a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
               {% if user.is_authenticated %}
               <div class="dropdown">
                 <button
-                  class="btn btn btn-outline-primary dropdown-toggle"
+                  class="btn btn btn-outline-light dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <b><i class="bi bi-person-square"></i> {{ user.get_username}}</b
+                  <b
+                    ><i class="bi bi-person-square"></i> {{
+                    user.get_username}}</b
                   >
                 </button>
                 <ul class="dropdown-menu">
                   <li>
                     <a class="btn btn-sm" href="{% url 'profile' %}">
-                      <b>Profile</b></a
+                      <b>My Articles</b></a
                     >
                   </li>
                   <li>
@@ -721,20 +753,41 @@
         </div>
       </div>
     </div>
-    {% block content %} {% endblock %}
+    {% comment %}
+    <div class="cookie-consent title">
+      <span
+        >This site uses cookies to enhance user experience. see<a
+          href="#"
+          class="ml-1 text-decoration-none"
+          >Privacy policy</a
+        >
+      </span>
+      <div
+        class="mt-2 mb-3 d-flex align-items-center justify-content-center g-2"
+      >
+        <button class="allow-button mr-3">Allow cookies</button>
+
+        <button class="allow-button">cancel</button>
+      </div>
+    </div>
+    {% endcomment %} {% block content %} {% endblock %}
+
     <footer class="footer mt-auto py-3 blog_head">
       <div class="container text-white text-center">
         <span class="title"
-          >Express yourself freely. | 
-          Scratch &copy; 2022 | <a href="{% url 'terms' %}">T & Cs</a> | <a href="{% url 'contact' %}">Contact</a> </span
-        >
+          >Express yourself freely. | Scratch &copy; 2022 |
+          <a href="{% url 'terms' %}">T & Cs</a> |
+          <a href="{% url 'contact' %}">Contact</a>
+        </span>
       </div>
     </footer>
+    <script></script>
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
   </body>
 </html>

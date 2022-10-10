@@ -16,7 +16,11 @@
         <div class="position-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link active fw-bold title" aria-current="page" href="{% url 'profile' %}">
+              <a
+                class="nav-link active fw-bold title"
+                aria-current="page"
+                href="{% url 'profile' %}"
+              >
                 <i class="bi bi-house-heart"></i>
                 {{ user.get_username }}
               </a>
@@ -66,12 +70,16 @@
                         >
                           View
                         </a>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
+                        <a
+                          href="{{ base_url}}/articles/{{ article.id }}/edit/"
+                          class="btn btn-sm btn-outline-secondary fw-bold"
                         >
                           Edit
-                        </button>
+                      </a>
+                          <a class="btn btn-sm btn-outline-secondary fw-bold" href="#">
+                            Unpublish
+                          </a>
+                        
                       </div>
                       <small class="text-muted">9 mins</small>
                     </div>

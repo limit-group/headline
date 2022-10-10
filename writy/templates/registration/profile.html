@@ -45,6 +45,12 @@
       {% endif %}
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col col-lg-8 mb-4 mb-lg-0">
+          <h2 class="title text-center">
+            Start drafting a
+            <a href="{% url 'article_new'  %}" class="btn btn-primary">
+              new article.
+            </a>
+          </h2>
           <div class="card mb-3" style="border-radius: 0.5rem">
             <div class="row">
               <div
@@ -102,12 +108,7 @@
                       <p class="text-muted">x</p>
                     </div>
                   </div>
-                  <h2 class="title">
-                    Start drafting now
-                    <a href="{% url 'article_new'  %}" class="btn btn-primary">
-                      new article.
-                    </a>
-                  </h2>
+                  
                 </div>
               </div>
             </div>

@@ -26,6 +26,7 @@
         class="form-control"
         id="floatingInput"
         name="email"
+        value="{{ form.email.value }}"
         placeholder="name@example.com"
       />
       <label for="floatingInput">Email</label>
@@ -38,6 +39,7 @@
         id="floatingPassword"
         placeholder="Password"
         name="subject"
+        value="{{ form.subject.value }}"
       />
       <label for="floatingPassword">Subject</label>
     </div>
@@ -49,7 +51,7 @@
         id="floatingPassword"
         class="form-control"
       >
-Message</textarea
+Message {{ form.subject.value }}</textarea
       >
     </div>
 
