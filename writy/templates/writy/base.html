@@ -1,12 +1,9 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- CSS only -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
@@ -18,21 +15,12 @@
       crossorigin="anonymous"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
     <title>Headline</title>
     <style>
-      body {
-        font-family: "Josefin Sans", sans-serif !important;
-        background-color: #ffffff;
-        font-size: 1.25rem !important;
-      }
 
+      body {
+        font-size: 18px !important;
+      }
       section {
         padding: 60px 0;
         overflow: hidden;
@@ -553,22 +541,13 @@
         border-top-right-radius: 0;
       }
 
-      .title {
-        font-family: "Kalam", cursive;
-      }
-
+   
       a {
         text-decoration: none;
-        color: #ffffff;
-        font-family: "Kalam", cursive;
-        font-size: 18px !important;
+        font-weight: bold;
       }
 
-      a:hover {
-        text-decoration: underline;
-        color: #ffffff;
-      }
-
+      
       .blog_head {
         background-color: #ef5b25;
         color: #ffffff;
@@ -634,20 +613,6 @@
         background-image: url("https://images.pexels.com/photos/4132326/pexels-photo-4132326.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4132326.jpg&fm=jpg");
       }
 
-      h3 {
-        font-family: "Kalam", cursive;
-      }
-
-      .nav-item {
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      .stretched-link:hover {
-        color: #ef5b25 !important;
-        text-decoration: underline;
-      }
-
       .cookie-consent {
         position: fixed;
         bottom: 20px;
@@ -677,25 +642,62 @@
         border: 1px solid #ffffff;
         background-color: #ffffff;
       }
+
+      .navbar.white {
+        background:rgba(255, 255, 255, 0.89) !important;   
+        color: #ef5b25 !important;
+     }
+
+     .a {
+      color: 
+     }
     </style>
   </head>
   <body>
-    <div class="blog_head">
-      <div class="container">
-        <header class="blog-header py-3">
-          <div
-            class="row flex-nowrap justify-content-between align-items-center"
-          >
-            <div class="col-4 pt-1 d-lg-flex d-none">
-              <a class="" href="{% url 'subscribe' %}"> Subscribe </a>
-            </div>
-            <div class="col-4 text-center">
-              <a class="blog-header-logo" href="{% url 'home' %}">
-                <h3>Headline</h3>
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'subscribe' %}"><small> subscribe </small></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'subscribe' %}"> <small>about headline</small></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'feedback' %}"> <small>feedback</small> </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'subscribe' %}"><small> accessibility <small></a>
+           
+          </ul>
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="{% url 'login' %}"
+              >
+                <i class="bi bi-cloud-drizzle-fill"></i> weather 
               </a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-              {% if user.is_authenticated %}
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'subscribe' %}"><i class="bi bi-bell-fill"></i>  information </a>
+          </li>
+         
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="{% url 'register' %}"
+            >
+           <i class="bi bi-plus-square-fill"></i>  post article
+            </a
+          </li>
+          {% if user.is_authenticated %}
               <div class="dropdown">
                 <button
                   class="btn btn btn-outline-light dropdown-toggle"
@@ -704,70 +706,40 @@
                   aria-expanded="false"
                 >
                   <b
-                    ><i class="bi bi-person-square"></i> {{user.get_username}}</b
+                    ><i class="bi bi-person-square"></i>
+                    {{user.get_username}}</b
                   >
                 </button>
                 <ul class="dropdown-menu">
                   <li>
                     <a class="btn btn-sm" href="{% url 'profile' %}">
-                      <b>My Articles</b></a
+                      <b>my articles</b></a
                     >
                   </li>
                   <li>
                     <a class="btn btn-sm" href="{% url 'logout' %}">
-                      <b>Logout </b></a
+                      <b>logout </b></a
                     >
                   </li>
                 </ul>
               </div>
 
               {% else %}
+          
+              <li class="nav-item">
               <a
-                class="btn btn-sm btn-white text-white"
+                class="nav-link btn btn-sm btn-primary"
                 href="{% url 'login' %}"
               >
-                Sign In
+                <small>log in</small>
               </a>
-              <a
-                class="btn btn-sm btn-white text-white"
-                href="{% url 'register' %}"
-              >
-                Sign up
-              </a>
+            </li>
               {% endif %}
-            </div>
-          </div>
-        </header>
-
-        <div class="nav-scroller py-1 mb-2">
-          <nav class="nav d-flex justify-content-between">
-            {% for category in categories %}
-            <a class="p-2" href="/topics/{{ category.slug }}/">
-              {{ category.title }}</a
-            >
-            {% endfor %}
-          </nav>
+        </ul>
         </div>
       </div>
-    </div>
-    {% comment %}
-    <div class="cookie-consent title">
-      <span
-        >This site uses cookies to enhance user experience. see<a
-          href="#"
-          class="ml-1 text-decoration-none"
-          >Privacy policy</a
-        >
-      </span>
-      <div
-        class="mt-2 mb-3 d-flex align-items-center justify-content-center g-2"
-      >
-        <button class="allow-button mr-3">Allow cookies</button>
-
-        <button class="allow-button">cancel</button>
-      </div>
-    </div>
-    {% endcomment %} {% block content %} {% endblock %}
+    </nav>
+    {% block content %} {% endblock %}
 
     <footer class="footer mt-auto py-3 blog_head">
       <div class="container text-white text-center">
@@ -778,7 +750,14 @@
         </span>
       </div>
     </footer>
-    <script></script>
+    <script>
+      // Navbar Transparent to White when scrolling
+      $(window).scroll(function() {
+        var offset = $(window).scrollTop();
+        console.log(offset);
+        $('.navbar').toggleClass('white', offset > 50);
+      });
+    </script>
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

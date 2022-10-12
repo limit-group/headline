@@ -244,6 +244,15 @@ def contact_view(request):
     )
 
 
+# Weather View
+def weather_view(request):
+    return render(request, "writy/weather.html")
+
+
+#  Feedback View
+def feedback_view(request):
+    return render(request, "writy/feedback.html")
+
 # Subscribe to newsletter
 
 

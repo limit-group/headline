@@ -23,4 +23,8 @@ urlpatterns = [
     path("terms-and-conditions/", views.terms, name="terms"),
     path("activate/<uidb64>/<token>/", views.activate, name="activate"),
     path("contact/", views.contact_view, name="contact"),
+    path("weather/", views.weather_view, name="weather"),
+    path("feedback/", views.feedback_view, name="feedback"),
+    
+
 ]

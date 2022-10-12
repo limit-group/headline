@@ -1,6 +1,11 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 
-<div>
+<style>
+  .i {
+    font-size: 3rem;
+  }
+</style>
+<div class="py-5">
   <main class="form-signin">
     <div class="container">
       {% if form.errors %}
@@ -67,7 +72,7 @@
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me" required /> I agree to
-          Writy's
+          Headline's
           <a href="{% url 'terms' %}" style="color: #ef5b25 !important"
             >Terms and Conditions</a
           >
@@ -77,15 +82,54 @@
         Register
       </button>
 
-      <p class="mt-5">
+      <p class="mt-2">
         Already have an account?
         <a href="{% url 'login' %}">
           <b style="color: #ef5b25 !important">Login</b>
         </a>
       </p>
-      <p class="mt-5 mb-3 text-muted">Scratch &copy; 2022</p>
     </form>
   </main>
+  <div class="album py-2">
+    <div class="container">
+      <div class="text-center">
+        <h2>supports rich creative genre</h2>
+        <p>
+          Including articles, micro headlines, Q&A, columns, audio and other
+          genres
+        </p>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body text-center">
+              <i class="i bi bi-chat-left "></i>
+              <p class="card-text text-center">Micro Headlines</p>
+              <p>In just a few hundred words, record new things and share your thoughts at the moment</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body text-center">
+              <i class="i bi bi-journals"></i>
+              <p class="card-text text-center">Articles</p>
+              <p>Countless arrangements of pictures and text to express your thoughts to the world</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body text-center">
+              <i class="i bi bi-journal"></i>
+              <p class="card-text ">Columns</p>
+              <p>Form a column with pictures, texts, videos, etc., and sell them to users at a custom price</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

@@ -38,3 +38,9 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ("email", "subject", "message")
+
+# class FeedbackForm(forms.ModelForm):
+
+#     class Meta:
+#         model = FeedbackForm
+#         fields= {}
