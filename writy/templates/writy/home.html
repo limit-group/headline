@@ -3,7 +3,7 @@
   <main class="container">
     {% if message %}
     <div class="alert alert-success text-center">
-      <span class="title">{{ message }}  &#128513; </span>
+      <span class="title">{{ message }} &#128513; </span>
     </div>
     {% endif %}
 
@@ -16,58 +16,44 @@
           We know you are talented, you want to report about issues you see
           around fast, here is a chance for you to talk...
         </p>
-        <p class="lead mb-0">
+        {% comment %} <p class="lead mb-0">
           <a href="#" class="fw-bold"> Continue reading... </a>
-        </p>
+        </p> {% endcomment %}
       </div>
     </div>
 
     <div class="row mb-2">
+      {% if latests %} {% for latest in latests %}
       <div class="col-md-6">
         <div
           class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
         >
           <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">Travel</strong>
-            <h3 class="mb-0">Insecurity around Campus</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
+            <strong class="d-inline-block mb-2 text-primary"
+              >{{ latest.topic }}</strong
+            >
+            <h3 class="mb-0">{{ latest.title | title}}</h3>
+            <div class="mb-1 text-muted">{{ latest.created_on }}</div>
             <p class="card-text mb-auto">
               Over the past few weeks concerns have arised on matter security...
             </p>
-            <a href="#" class="stretched-link fw-bold"> Continue reading </a>
+            <a
+              href="{% url 'article' latest.slug %}"
+              class="stretched-link fw-bold"
+            >
+              Continue reading
+            </a>
           </div>
           <div class="col-auto d-none d-lg-block">
             <img
               class="img-fluid featured"
-              src="https://images.pexels.com/photos/4132326/pexels-photo-4132326.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4132326.jpg&fm=jpg"
-              alt="latest"
+              src="{{base_url}}/media/{{ latest.image }}"
+              alt="{{ latest.title }}"
             />
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div
-          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Politics</strong>
-            <h3 class="mb-0">Shock as Unit Registration is Closed</h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">
-              Many students have come to the realization of an indefinite portal
-              closure without notice...
-            </p>
-            <a href="#" class="stretched-link fw-bold"> Continue reading </a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <img
-              class="img-fluid featured"
-              src="https://images.pexels.com/photos/851213/pexels-photo-851213.jpeg?cs=srgb&dl=pexels-lisa-fotios-851213.jpg&fm=jpg"
-              alt="latest"
-            />
-          </div>
-        </div>
-      </div>
+      {% endfor %} {% endif %}
     </div>
 
     <div class="row g-5">
@@ -76,41 +62,17 @@
           From the Editor
         </h3>
 
+        {% if articles %} {% for article in articles %}
         <article class="blog-post">
-          <h3 class="blog-post-title">Insecurity around Campus</h3>
+          <h3 class="blog-post-title">{{ article.title | title}}</h3>
           <p class="blog-post-meta">
-            January 1, 2021 by <a href="#" class="fw-bold title">Mark</a>
+            {{ articles.updated_on }} by
+            <a href="#" class="fw-bold title">{{ article.author }}</a>
           </p>
 
-          <p>
-            After students reporting cases of mugging, intimidation and buglary,
-            the School has since written a memo to that effect and is now
-            liasing with the local government to enhance security around the
-            school.
-          </p>
-          <hr />
-          <p>
-            Students are further advised not to stay out till late and as well
-            as be each others' keeper as the security officials cointinue
-            pursuing the perpetrators of the recent theft.
-          </p>
+          <p>{% autoescape off %} {{ article.content }} {% endautoescape %}</p>
         </article>
-
-        <article class="blog-post">
-          <h3 class="blog-post-title">Shock as Unit Registration is Closed</h3>
-          <p class="blog-post-meta">
-            December 23, 2020 by <a href="#" class="fw-bold title">Jacob</a>
-          </p>
-
-          <p>
-            Many students have come to the realization of an indefinite portal
-            closure without notice, the student union is yet to speak on this.
-            It may seem that dates have been deliberately swapped, or we are
-            experiencing the same system failure that we had when the portal was
-            officialy opened.
-          </p>
-        </article>
-
+        {% endfor %} {% endif %}
         <nav class="blog-pagination" aria-label="Pagination">
           <a class="btn btn-outline-primary" href="#"> Older </a>
           <a
