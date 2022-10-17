@@ -1,7 +1,7 @@
 {% extends 'registration/base.html' %} {% block content %}
 
 <main>
-  <div class="album py-5 bg-light">
+  <div class="album py-2 ">
     <div class="container">
       {% if articles %}
       <h2 class="title text-center">Stay ahead on {{ article.topic }}</h2>
@@ -15,7 +15,7 @@
               src="{{base_url}}/media/{{ article.image }}"
             />
             <div class="card-body">
-              <h2 class="title">{{ article.title }}</h2>
+              <h2 class="title">{{ article.title | title }}</h2>
               <div class="d-flex justify-content-between align-items-center">
                 <a href="{% url 'article' article.slug %}" class="fw-bold">
                   Continue reading...

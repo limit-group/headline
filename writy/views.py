@@ -36,7 +36,13 @@ def error_500(request):
 
 def home(request):
     categories = Topic.objects.filter(status=1)
-    return render(request, "writy/home.html", {"categories": categories})
+    articles = Article.objects.filter(status=1, author=1)[:2]
+    latest = Article.objects.filter(status=1).order_by("-created_on")[:2]
+    context = {}
+    context["categories"] = categories
+    context["articles"] = articles
+    context["latests"] = latest
+    return render(request, "writy/home.html", context)
 
 
 def topics(request, slug):
@@ -71,11 +77,17 @@ def article(request, slug):
     article = get_object_or_404(Article, slug=slug)
     categories = Topic.objects.filter(status=1)
     comments = Comment.objects.filter(article=article).order_by("-created_on").all()
-    print(comments)
+    recent = Article.objects.filter(status=1)[:4]
+
+    context = {}
+    context["article"] = article
+    context["categories"] = categories
+    context["comments"] = comments
+    context["recents"] = recent
     return render(
         request,
         "writy/article.html",
-        {"article": article, "comments": comments, "categories": categories},
+        context,
     )
 
 
