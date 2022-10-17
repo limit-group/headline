@@ -35,7 +35,7 @@
             <h3 class="mb-0">{{ latest.title | title}}</h3>
             <div class="mb-1 text-muted">{{ latest.created_on }}</div>
             <p class="card-text mb-auto">
-              Over the past few weeks concerns have arised on matter security...
+              {% comment %} Over the past few weeks concerns have arised on matter security... {% endcomment %}
             </p>
             <a
               href="{% url 'article' latest.slug %}"
