@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from writy.models import Article, Comment, Subscriber, Contact
+from writy.models import Article, Comment, Headline, Subscriber, Contact
 
 
 class SignUpForm(UserCreationForm):
@@ -39,8 +39,8 @@ class ContactForm(forms.ModelForm):
         model = Contact
         fields = ("email", "subject", "message")
 
-# class FeedbackForm(forms.ModelForm):
 
-#     class Meta:
-#         model = FeedbackForm
-#         fields= {}
+class HeadlineForm(forms.ModelForm):
+    class Meta:
+        model = Headline
+        fields = ("headline",)

@@ -19,6 +19,22 @@ class Topic(models.Model):
         return self.title
 
 
+class Headline(models.Model):
+    headline = models.CharField(max_length=65, unique=True)
+    slug = models.SlugField(max_length=20, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    updated_on = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=1)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return self.headline
+
+
 class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -41,6 +57,7 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    headline = models.ForeignKey(Headline, on_delete=models.CASCADE)
     comment = models.TextField()
 
     class Meta:

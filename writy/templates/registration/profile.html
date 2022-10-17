@@ -1,121 +1,84 @@
 {% extends 'registration/base.html' %} {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <nav
-      id="sidebarMenu"
-      class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse"
-    >
-      <div class="position-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active fw-bold title" aria-current="page" href="{% url 'profile' %}">
-              <i class="bi bi-house-heart"></i>
-              {{ user.get_username }}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'articles' user.id %}">
-              <i class="bi bi-journal-check"></i>
-              Articles
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'drafts' user.id %}">
-              <i class="bi bi-book"></i>
-              Drafts
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="#">
-              <i class="bi bi-bookmark-check"></i>
-              Published
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      {% if user.is_active == False %}
-      <div class="alert alert-success text-center">
-        <span class="title"
-          >Dear {{ user.get_username}} Check you email and complete email
-          verification to be able to draft and publish your articles.</span
-        >
-      </div>
-      {% endif %}
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col col-lg-8 mb-4 mb-lg-0">
-          <h2 class="title text-center">
-            Start drafting a
-            <a href="{% url 'article_new'  %}" class="btn btn-primary">
-              new article.
-            </a>
-          </h2>
-          <div class="card mb-3" style="border-radius: 0.5rem">
-            <div class="row">
-              <div
-                class="col-md-4 gradient-custom text-center"
-                style="
-                  border-top-left-radius: 0.5rem;
-                  border-bottom-left-radius: 0.5rem;
-                "
-              >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                  alt="Avatar"
-                  class="img-fluid my-2"
-                  style="width: 80px"
-                />
-                <h5 class="title">{{ user.get_username }}</h5>
-                Edit Profile <i class="bi bi-pencil-square mb-5 fw-bold"></i>
-              </div>
-              <div class="col-md-8">
-                <div class="card-body p-4">
-                  <h6 class="title">About Information</h6>
-                  <hr class="mt-0 mb-4" />
-                  <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <h6>Email</h6>
-                      <p class="text-muted">{{ user.email }}</p>
-                    </div>
-                    <div class="col-6 mb-3">
-                      <h6>Username</h6>
-                      <p class="text-muted">{{ user.get_username }}</p>
-                    </div>
-                  </div>
-                  <h6>Articles</h6>
-                  <hr class="mt-0 mb-4" />
-                  <div class="row pt-1">
-                    <div class="col-6 mb-3">
-                      <a
-                        class="nav-link fw-bold"
-                        href="{% url 'articles' user.id %}"
-                      >
-                        <i class="bi bi-journal-check"></i>
-                        <h6>Recent Articles</h6>
-                      </a>
 
-                      <p class="text-muted">x</p>
-                    </div>
-                    <div class="col-6 mb-3">
-                      <a
-                        class="nav-link fw-bold"
-                        href="{% url 'drafts' user.id %} "
-                      >
-                        <i class="bi bi-book"></i>
-                        <h6>My Drafts</h6>
-                      </a>
-                      <p class="text-muted">x</p>
-                    </div>
-                  </div>
-                  
-                </div>
+<style>
+  .i {
+    font-size: 2rem;
+  }
+</style>
+<div class="py-5">
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    {% if user.is_active == False %}
+    <div class="alert alert-success text-center">
+      <span class="title"
+        >Dear {{ user.get_username}} Check you email and complete email
+        verification to be able to draft and publish your articles.</span
+      >
+    </div>
+    {% endif %}
+
+    <div class="album py-5">
+      <div class="container">
+        <div class="text-center">
+          <h2>a rich creative genre</h2>
+          <p>
+            Including articles, micro headlines, Q&A, columns,and other genres
+          </p>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <i class="i bi bi-chat-left"></i>
+                <p class="card-text text-center">Micro Headlines</p>
+                <p>
+                  In just a few hundred words, record new things and share your
+                  thoughts at the moment
+                </p>
+                <a href="{% url 'headline_new' %}">
+                  <span class="i"
+                    ><i class="i bi bi-plus-circle"></i> add
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <i class="i bi bi-journals"></i>
+                <p class="card-text text-center">Articles</p>
+                <p>
+                  Countless arrangements of pictures and text to express your
+                  thoughts to the world
+                </p>
+                <a href="{% url 'article_new'%}">
+                  <span class="i"
+                    ><i class="i bi bi-plus-circle"></i> add
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <i class="i bi bi-journal"></i>
+                <p class="card-text">Columns</p>
+                <p>
+                  Form a column with pictures, texts, videos, etc., and sell
+                  them to users at a custom price
+                </p>
+                <a href="">
+                  <span class="i"
+                    ><i class="i bi bi-plus-circle"></i> add
+                  </span>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 {% endblock %}

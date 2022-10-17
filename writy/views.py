@@ -2,9 +2,16 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import logout
-from writy.models import Article, Topic, Subscriber, Comment
+from writy.models import Article, Headline, Topic, Subscriber, Comment
 from django.contrib.auth.models import User
-from .forms import ArticleForm, CommentForm, ContactForm, SignUpForm, SubscribeForm
+from .forms import (
+    ArticleForm,
+    CommentForm,
+    ContactForm,
+    HeadlineForm,
+    SignUpForm,
+    SubscribeForm,
+)
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
@@ -39,14 +46,27 @@ def home(request):
     return render(request, "writy/home.html", {"categories": categories})
 
 
-def topics(request, slug):
-    categories = Topic.objects.filter(status=1)
-    topic = get_object_or_404(Topic, slug=slug)
-    articles = Article.objects.filter(topic=topic, status=1).order_by("-created_on")
+def headline_new(request):
 
-    return render(
-        request, "writy/articles.html", {"articles": articles, "categories": categories}
-    )
+    context = {}
+
+    if request.method == "GET":
+        return render(request, "micro/new.html")
+
+    if request.method == "POST":
+        form = HeadlineForm(request.POST)
+
+        if form.is_valid():
+            headline = form.save(commit=False)
+            headline.slug = headline.headline.replace(" ", "-")
+            headline.author = request.user
+            headline.save()
+
+            context["success"] = "headline post success"
+            return render(request, "article/new.html", context)
+    else:
+        form = HeadlineForm()
+    return render(request, "micro/new.html", {"form": form})
 
 
 # All articles for a given author
@@ -253,9 +273,17 @@ def weather_view(request):
 def feedback_view(request):
     return render(request, "writy/feedback.html")
 
+
+# About View
+def about_view(request):
+    return render(request, "writy/about.html")
+
+
+def accessibility_view(request):
+    return render(request, "writy/accessibility.html")
+
+
 # Subscribe to newsletter
-
-
 def subscribe(request):
 
     if request.method == "GET":

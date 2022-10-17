@@ -14,6 +14,11 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link
+	rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.21.0/jodit.min.css"
+/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jodit/3.21.0/jodit.min.js"></script>
 
     <title>Headline</title>
     <style>
@@ -544,7 +549,7 @@
    
       a {
         text-decoration: none;
-        font-weight: bold;
+        color: #000;
       }
 
       
@@ -576,10 +581,16 @@
       .btn-outline-primary {
         background-color: #ffffff !important;
         color: #ef5b25;
-        border: 1px #ef5b25 !important;
+        
       }
 
       .btn-outline-primary:hover {
+        backgborder: 1px #ef5b25 !important;round-color: #ef5b25 !important;
+        color: #ffffff;
+        border: 1px #ef5b25 !important;
+      }
+
+      .btn-outline-success {
         background-color: #ef5b25 !important;
         color: #ffffff;
         border: 1px #ef5b25 !important;
@@ -648,45 +659,44 @@
         color: #ef5b25 !important;
      }
 
-     .a {
-      color: 
-     }
+  
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent white fixed-top d-none d-lg-block">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'subscribe' %}"><small> subscribe </small></a>
+              <a class="nav-link" href="{% url 'subscribe' %}"><b> subscribe </b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'subscribe' %}"> <small>about headline</small></a>
+              <a class="nav-link" href="{% url 'about' %}"> <small>about headline</small></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'feedback' %}"> <small>feedback</small> </a>
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'subscribe' %}"><small> accessibility <small></a>
+              <a class="nav-link" href="{% url 'accessibility' %}"><small> accessibility <small></a>
            
           </ul>
-          <ul class="navbar-nav ">
+          <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
               <a
                 class="nav-link"
                 href="{% url 'login' %}"
               >
-                <i class="bi bi-cloud-drizzle-fill"></i> weather 
+                <i class="bi bi-cloud-drizzle-fill"></i> <b>weather</b>
               </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'subscribe' %}"><i class="bi bi-bell-fill"></i>  information </a>
+            <a class="nav-link" href="{% url 'subscribe' %}"><i class="bi bi-bell-fill"></i>  <b>information</b></a>
           </li>
          
           <li class="nav-item">
@@ -694,13 +704,14 @@
               class="nav-link"
               href="{% url 'register' %}"
             >
-           <i class="bi bi-plus-square-fill"></i>  post article
-            </a
+           <i class="bi bi-plus-square-fill"></i>  <b>post article</b>
+          </a>
           </li>
           {% if user.is_authenticated %}
-              <div class="dropdown">
+          <li class="nav-item">
+              <div class="dropdown nav-link">
                 <button
-                  class="btn btn btn-outline-light dropdown-toggle"
+                  class="btn  btn btn-sm btn-primary dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -723,7 +734,7 @@
                   </li>
                 </ul>
               </div>
-
+            </li>
               {% else %}
           
               <li class="nav-item">
@@ -739,18 +750,28 @@
         </div>
       </div>
     </nav>
+    <nav>
+      <div class="container-fluid mb-1">
+      <form class="d-flex">
+        <input class="form-control me-1" type="search" placeholder="search headline" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+      </form>
+    </div>
+    </nav>
     {% block content %} {% endblock %}
 
     <footer class="footer mt-auto py-3 blog_head">
       <div class="container text-white text-center">
         <span class="title"
           >Express yourself freely. | Headline &copy; 2022 |
-          <a href="{% url 'terms' %}">T & Cs</a> |
-          <a href="{% url 'contact' %}">Contact</a>
+          <a href="{% url 'terms' %}" class="text-white">T & Cs</a> |
+          <a href="{% url 'contact' %}" class="text-white">Contact</a>
         </span>
       </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
     <script>
+      const editor = Jodit.make('#editor');
       // Navbar Transparent to White when scrolling
       $(window).scroll(function() {
         var offset = $(window).scrollTop();
@@ -764,6 +785,6 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+    
   </body>
 </html>
