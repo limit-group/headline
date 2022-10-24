@@ -793,14 +793,29 @@
                   >
                 </button>
                 <ul class="dropdown-menu">
+                  <li class="">
+                    <a class="btn btn-sm" href="{% url 'article_new'  %}">
+                      <b><i class="bi bi-file-earmark-plus"></i> Create</b></a
+                    >
+                  </li>
+                  <li>
+                    <a class="btn btn-sm" href="{% url 'articles' user.id %}">
+                      <b><i class="bi bi-postcard-heart"></i> My Articles</b></a
+                    >
+                  </li>
+                  <li>
+                    <a class="btn btn-sm" href="{% url 'drafts' user.id %}">
+                      <b><i class="bi bi-bookmark-x"></i> Drafts</b></a
+                    >
+                  </li>
                   <li>
                     <a class="btn btn-sm" href="{% url 'profile' %}">
-                      <b>My Articles</b></a
+                      <b><i class="bi bi-gear"></i> Settings</b></a
                     >
                   </li>
                   <li>
                     <a class="btn btn-sm" href="{% url 'logout' %}">
-                      <b>Logout </b></a
+                      <b><i class="bi bi-box-arrow-left"></i> Logout </b></a
                     >
                   </li>
                 </ul>
