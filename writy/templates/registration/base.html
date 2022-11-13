@@ -15,17 +15,20 @@
       crossorigin="anonymous"
     />
     <link
-	rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.21.0/jodit.min.css"
-/>
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/jodit/3.21.0/jodit.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-    
 
     <title>Headline</title>
     <style>
 
       body {
         font-size: 18px !important;
+        font-family: 'Roboto', sans-serif;
       }
       section {
         padding: 60px 0;
@@ -664,18 +667,14 @@
         background:rgba(255, 255, 255, 0.89) !important;   
         color: #ef5b25 !important;
      }
-
-  
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-transparent white fixed-top d-none d-lg-block">
       <div class="container-fluid">
-        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
@@ -687,10 +686,8 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'feedback' %}"> <small>feedback</small> </a>
             </li>
-            
             <li class="nav-item">
               <a class="nav-link" href="{% url 'accessibility' %}"><small> accessibility <small></a>
-           
           </ul>
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
