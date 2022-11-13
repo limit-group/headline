@@ -17,23 +17,51 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    {% comment %} <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.18.9/jodit.es2018.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.18.9/jodit.es2018.min.js"></script>
     <link
-      href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
       rel="stylesheet"
-    /> {% endcomment %}
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
 
-    <title>Headline</title>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit%3Awght%40400%3B500%3B600%3B700%3B900&#038;display=swap"
+      rel="stylesheet"
+    />
+    <title>Wild</title>
     <style>
       body {
-        background-color: #ffffff !important;
-        font-size: 1.25rem !important;
+        background-color: #ffffff;
+        font-family: "Outfit", sans-serif !important;
       }
 
+      .carousel {
+        max-height: 440px;
+        overflow: hidden;
+        margin: auto;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .carousel {
+          max-height: 300px;
+          overflow: hidden;
+          margin: auto;
+        }
+        .carousel-inner .carousel-item > img {
+          /* position: absolute; */
+          object-fit: cover;
+          height: 300px;
+          width: 100%;
+        }
+      }
+
+      .carousel-inner .carousel-item > img {
+        /* position: absolute; */
+        object-fit: cover;
+        height: 440px;
+        width: 100%;
+      }
       section {
         padding: 60px 0;
         overflow: hidden;
@@ -557,6 +585,7 @@
       a {
         text-decoration: none;
         color: #ffffff;
+
         font-size: 18px !important;
       }
 
@@ -567,6 +596,9 @@
 
       .blog_head {
         background-color: #ef5b25;
+        color: #ffffff;
+      }
+      .nav_link {
         color: #ffffff;
       }
 
@@ -742,10 +774,6 @@
       .blog-pagination > .btn {
         border-radius: 2rem;
       }
-
-      /*
- * Blog posts
- */
       .blog-post {
         margin-bottom: 4rem;
       }
@@ -757,127 +785,88 @@
         margin-bottom: 1.25rem;
         color: #727272;
       }
+      .footer {
+        min-height: '90vh'
+      }
     </style>
-    <script
-      src="https://cdn.tiny.cloud/1/2b0pzo0yg2z1vuz8lgl3yc659n8gy158fjf14lgg2w28b2r7/tinymce/6/tinymce.min.js"
-      referrerpolicy="origin"
-    ></script>
   </head>
   <body>
-    <div class="blog_head">
-      <div class="container">
-        <header class="blog-header py-3">
-          <div
-            class="row flex-nowrap justify-content-between align-items-center"
-          >
-            <div class="col-4 pt-1 d-lg-flex d-none">
-              <a class="" href="{% url 'subscribe' %}"> Subscribe </a>
-            </div>
-            <div class="col-4 text-center">
-              <a class="blog-header-logo" href="{% url 'home' %}">
-                <h3>Headline</h3>
-              </a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-              {% if user.is_authenticated %}
-              <div class="dropdown">
-                <button
-                  class="btn btn btn-outline-light dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <b
-                    ><i class="bi bi-person-square"></i>
-                    {{user.get_username}}</b
-                  >
-                </button>
-                <ul class="dropdown-menu">
+    <br /><br />
+    {% block content %} {% endblock %} 
+    <footer class="footer mt-auto py-3 blog_head pt-5">
+      <footer id="footer" class="footer">
+        <div class="footer-content">
+          <div class="container">
+            <div class="row g-5">
+              <div class="col-lg-4">
+                <h5 class="footer-heading">About Wild</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ab, perspiciatis beatae autem deleniti voluptate nulla a dolores, exercitationem eveniet libero laudantium recusandae officiis qui aliquid blanditiis omnis quae. Explicabo?</p>
+                <p><a href="{% url 'home' %}" class="footer-link-more">Learn More</a></p>
+              </div>
+              <div class="col-6 col-lg-2">
+                <h5 class="footer-heading">Quick Links</h5>
+                <ul class="footer-links list-unstyled">
+                  <li><a href="{{ base_url}}"><i class="bi bi-chevron-right"></i>Home</a></li>
+                  <li><a href="{{ base_url}}"><i class="bi bi-chevron-right"></i>About us</a></li>
+                  <li><a href="{{ base_url}}"><i class="bi bi-chevron-right"></i>Contact</a></li>
+                  <li><a href="{{ base_url}}"><i class="bi bi-chevron-right"></i>Advertising</a></li>
+                </ul>
+              </div>
+              <div class="col-6 col-lg-2">
+                <h5 class="footer-heading">Categories</h5>
+                <ul class="footer-links list-unstyled">
+                  {% for category in categories %}
+                  <li><a href="{{ base_url}}/topics/{{ category.slug}}"><i class="bi bi-chevron-right"></i>{{ category.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="col-lg-4">
+                <h5 class="footer-heading">Recent Posts</h5>
+                <ul class="footer-links footer-blog-entry list-unstyled">
                   <li>
-                    <a class="btn btn-sm" href="{% url 'profile' %}">
-                      <b>My Articles</b></a
-                    >
+                    <a href="single-post.html" class="d-flex align-items-center">
+                      <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
+                      <div>
+                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                        <span>5 Great Startup Tips for Female Founders</span>
+                      </div>
+                    </a>
                   </li>
                   <li>
-                    <a class="btn btn-sm" href="{% url 'logout' %}">
-                      <b>Logout </b></a
-                    >
+                    <a href="single-post.html" class="d-flex align-items-center">
+                      <img src="assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
+                      <div>
+                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                        <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>
+                      </div>
+                    </a>
                   </li>
                 </ul>
               </div>
-
-              {% else %}
-              <a
-                class="btn btn-sm btn-white text-white"
-                href="{% url 'login' %}"
-              >
-                Sign In
-              </a>
-              <a
-                class="btn btn-sm btn-white text-white"
-                href="{% url 'register' %}"
-              >
-                Sign up
-              </a>
-              {% endif %}
             </div>
           </div>
-        </header>
-
-        <div class="nav-scroller py-1 mb-2">
-          <nav class="nav d-flex justify-content-between">
-            {% for category in categories %}
-            <a class="p-2" href="/topics/{{ category.slug }}/">
-              {{ category.title }}</a
-            >
-            {% endfor %}
-          </nav>
         </div>
-      </div>
-    </div>
-    {% block content %} {% endblock %}
-    <!-- Include the Quill library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-    <!-- Initialize Quill editor -->
-    <script>
-      tinymce.init({
-        selector: "textarea",
-        browser_spellcheck: true,
-       
-        plugins:
-          "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect",
-        toolbar:
-          "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-        tinycomments_mode: "embedded",
-        tinycomments_author: "Author name",
-        mergetags_list: [
-          { value: "First.Name", title: "First Name" },
-          { value: "Email", title: "Email" },
-        ],
-      });
-    </script>
-    {% comment %} <script>
-      var quill = new Quill("#editor", {
-        theme: "snow",
-        placeholder: "Compose an epic...",
-        height: 200,
-      });
-
-      $("#expand").click(function () {
-        $("#editor").css({
-          position: "fixed",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          zIndex: 999,
-        });
-      });
-    </script> {% endcomment %}
-
-    <script></script>
-    <!-- JavaScript Bundle with Popper -->
+        <div class="footer-legal">
+          <div class="container">
+            <div class="row justify-content-between">
+              <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <div class="copyright">
+                  Wild &copy; 2022 
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
+                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
