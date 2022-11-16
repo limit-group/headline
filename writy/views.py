@@ -36,8 +36,8 @@ def error_500(request):
 
 def home(request):
     categories = Topic.objects.filter(status=1)
-    articles = Article.objects.filter(status=1, author=1)[:2]
-    latest = Article.objects.filter(status=1).order_by("-created_on")[:2]
+    articles = Article.objects.filter(status=1, author=1)[:3]
+    latest = Article.objects.filter(status=1).order_by("-created_on")[:3]
     context = {}
     context["categories"] = categories
     context["articles"] = articles
