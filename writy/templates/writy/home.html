@@ -1,5 +1,6 @@
 {% extends 'writy/base.html' %} {% load static %} {% block content %}
-<div>
+<style></style>
+<div class="dark_bg">
   <main class="container">
     {% if message %}
     <div class="alert alert-success text-center">
@@ -7,7 +8,7 @@
     </div>
     {% endif %}
     <div class="row mb-2 pt-4">
-      <h3>Featured</h3>
+      <h3>FEATURED</h3>
       {% if latests %} {% for latest in latests %}
       <div class="col-md-6">
         <div
@@ -25,7 +26,7 @@
             </p>
             <a
               href="{% url 'article' latest.slug %}"
-              class="stretched-link fw-bold"
+              class="stretched-link text-white"
             >
               Continue reading
             </a>
@@ -44,16 +45,14 @@
 
     <div class="row g-5">
       <div class="col-md-8">
-        <h3 class="pb-4 mb-4  border-bottom title">
-          From the Editor
-        </h3>
+        <h3 class="pb-4 mb-4 border-bottom title">FROM THE EDITOR</h3>
 
         {% if articles %} {% for article in articles %}
         <article class="blog-post">
           <h5 class="">{{ article.title | title}}</h5>
           <p class="blog-post-meta">
             {{ articles.updated_on }} by
-            <a href="#" class="fw-bold title">{{ article.author }}</a>
+            <a href="#" class="text-white">{{ article.author }}</a>
           </p>
 
           <p>{% autoescape off %} {{ article.content }} {% endautoescape %}</p>
@@ -74,8 +73,8 @@
 
       <div class="col-md-4">
         <div class="position-sticky" style="top: 2rem">
-          <div class="p-4 mb-3 bg-light rounded">
-            <h5 class=" title">About</h5>
+          <div class="p-4 mb-3 rounded">
+            <h5 class="title">READ MORE.</h5>
             <p class="mb-0">
               We know you are talented, you want to report about issues you see
               around, here is a chance for you..
@@ -83,37 +82,37 @@
           </div>
 
           <div class="p-4">
-            <h5 class=" title">Archives</h5>
+            <h5 class="title">ARCHIVES</h5>
             <ol class="list-unstyled mb-0">
               <li>
-                <a href="#" class="fw-bold">September 2022</a>
+                <a href="#" class="text-white">September 2022</a>
               </li>
               <li>
-                <a href="#" class="fw-bold">August 2022</a>
+                <a href="#" class="text-white">August 2022</a>
               </li>
               <li>
-                <a href="#" class="fw-bold">July 2022</a>
+                <a href="#" class="text-white">July 2022</a>
               </li>
               <li>
-                <a href="#" class="fw-bold">June 2022</a>
+                <a href="#" class="text-white">June 2022</a>
               </li>
               <li>
-                <a href="#" class="fw-bold">May 2022</a>
+                <a href="#" class="text-white">May 2022</a>
               </li>
             </ol>
           </div>
 
           <div class="p-4">
-            <h5 class="title">Elsewhere</h5>
+            <h5 class="title">ELSEWHERE</h5>
             <ol class="list-unstyled">
               <li>
-                <a href="#" class="fw-bold">March 2021</a>
+                <a href="#" class="text-white">March 2021</a>
               </li>
               <li>
-                <a href="#" class="fw-bold">February 2021</a>
+                <a href="#" class="text-white">February 2021</a>
               </li>
               <li>
-                <a href="#" class="fw-bold">January 2021</a>
+                <a href="#" class="text-white">January 2021</a>
               </li>
             </ol>
           </div>
@@ -121,5 +120,9 @@
       </div>
     </div>
   </main>
+</div>
+<div class="justify-content-center text-center pt-5 pb-5">
+  <p class="lead">Get The Latest Wildlife Stories Delivered To your Inbox</p>
+  <a href="" class="btn btn-outline-secondary">subscribe</a>
 </div>
 {% endblock %}
