@@ -1,4 +1,4 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 
 <div>
   <main class="form-signin h-100">
@@ -46,14 +46,14 @@
           <input type="checkbox" value="remember-me" /> Remember me
         </label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">
+      <button class="w-100 btn btn-lg b_btn" type="submit">
         Sign in
       </button>
-      <p class="mt-5">
+      <!-- <p class="mt-5">
         <a href="{% url 'password_reset' %}" style="color: #ef5b25 !important"
           >Lost password?</a
         >
-      </p>
+      </p> -->
       {% comment %} <p class="mt-5">
         Don't have account?
         <a href="{% url 'register' %}">

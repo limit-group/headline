@@ -1,5 +1,21 @@
 {% extends 'writy/base.html' %} {% load static %} {% block content %}
 <style></style>
+{% if highlights %}
+<section id="image-carousel" class="splide" aria-label="Beautiful Wildlife">
+  <div class="splide__track">
+    <ul class="splide__list">
+      {% for highlight in highlights %}
+      <li class="splide__slide">
+        <img
+          src="{{base_url}}/media/{{ highlight.image }}"
+          alt="{{ highlight.title }}"
+        />
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
 <div class="dark_bg">
   <main class="container">
     {% if message %}
@@ -9,37 +25,28 @@
     {% endif %}
     <div class="row mb-2 pt-4">
       <h3 class="text-center">FEATURED STORIES</h3>
-      <hr>
-      {% if latests %} {% for latest in latests %}
-      <div class="col-md-4">
-        <div
-          class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-        >
-          <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-warning"
-              >{{ latest.topic }}</strong
-            >
-            <h3 class="mb-0">{{ latest.title | title}}</h3>
-            <div class="mb-1 text-muted">{{ latest.created_on }}</div>
-            <p class="card-text mb-auto">
-            </p>
-            <a
-              href="{% url 'article' latest.slug %}"
-              class="text-white"
-            >
-              Continue reading
-            </a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
+      <hr />
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for latest in latests %}
+        <div class="col">
+          <div class="card shadow-sm">
             <img
-              class="img-fluid featured"
+              style="height: 200px; object-fit: cover"
               src="{{base_url}}/media/{{ latest.image }}"
-              alt="{{ latest.title }}"
             />
+            <div class="card-body">
+              <h2 class="title text-black">{{ latest.title | title }}</h2>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="{% url 'article' latest.slug %} " class="fw-bold text-black">
+                  Continue reading...
+                </a>
+                <small class="text-muted">3 mins</small>
+              </div>
+            </div>
           </div>
         </div>
+        {% endfor %} 
       </div>
-      {% endfor %} {% endif %}
     </div>
 
     <div class="row g-5">
@@ -58,9 +65,9 @@
         </article>
         {% endfor %} {% endif %}
         <nav class="blog-pagination" aria-label="Pagination">
-          <a class="btn btn-outline-primary" href="#"> Older </a>
+          <a class="btn b_btn" href="#"> Older </a>
           <a
-            class="btn btn-outline-secondary disabled"
+            class="btn btn-outline-secondary disabled text-white"
             href="#"
             tabindex="-1"
             aria-disabled="true"
@@ -84,19 +91,23 @@
             <h5 class="title">ARCHIVES</h5>
             <ol class="list-unstyled mb-0">
               <li>
-                <a href="#" class="text-white">September 2022</a>
+                <a href="#" class="text-white">September </a>
               </li>
+              <br />
               <li>
-                <a href="#" class="text-white">August 2022</a>
+                <a href="#" class="text-white">August </a>
               </li>
+              <br />
               <li>
-                <a href="#" class="text-white">July 2022</a>
+                <a href="#" class="text-white">July </a>
               </li>
+              <br />
               <li>
-                <a href="#" class="text-white">June 2022</a>
+                <a href="#" class="text-white">June </a>
               </li>
+              <br />
               <li>
-                <a href="#" class="text-white">May 2022</a>
+                <a href="#" class="text-white">May </a>
               </li>
             </ol>
           </div>
@@ -105,13 +116,15 @@
             <h5 class="title">ELSEWHERE</h5>
             <ol class="list-unstyled">
               <li>
-                <a href="#" class="text-white">March 2021</a>
+                <a href="#" class="text-white">March </a>
               </li>
+              <br />
               <li>
-                <a href="#" class="text-white">February 2021</a>
+                <a href="#" class="text-white">February </a>
               </li>
+              <br />
               <li>
-                <a href="#" class="text-white">January 2021</a>
+                <a href="#" class="text-white">January </a>
               </li>
             </ol>
           </div>
@@ -122,6 +135,8 @@
 </div>
 <div class="justify-content-center text-center pt-5 pb-5">
   <p class="lead">Get The Latest Wildlife Stories Delivered To your Inbox</p>
-  <a href="" class="btn btn-outline-secondary">subscribe</a>
+  <a href="{% url 'subscribe' %}" class="btn btn-outline-secondary"
+    >subscribe</a
+  >
 </div>
 {% endblock %}

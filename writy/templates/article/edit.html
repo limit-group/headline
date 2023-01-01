@@ -1,4 +1,4 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 <div class="container-fluid">
   <div class="row">
     <nav
@@ -55,7 +55,7 @@
         {% endif %}
       </div>
       <div class="text-center">
-        <h1 class="title">Draft now, Publish when you feel like &#128540;</h1>
+        <h3 class="title">Draft now, Publish when you feel like &#128540;</h3>
         <form
           action="{{ base_url}}/articles/{{ article.id }}/edit/"
           method="POST"
@@ -109,7 +109,7 @@
           <br />
           <textarea id="editor" name="content">{{ article.content }}</textarea>
           <br />
-          <button class="w-100 btn btn-primary" type="submit">SAVE</button>
+          <button class="w-100 btn b_btn" type="submit">SAVE</button>
         </form>
       </div>
     </main>

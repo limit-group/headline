@@ -1,38 +1,11 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 <div class="container-fluid">
   <div class="row">
     <nav
       id="sidebarMenu"
       class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse"
     >
-      <div class="position-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active fw-bold title" aria-current="page" href="{% url 'profile' %}">
-              <i class="bi bi-house-heart"></i>
-              {{ user.get_username }}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'articles' user.id %}">
-              <i class="bi bi-journal-check"></i>
-              Articles
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'drafts' user.id %}">
-              <i class="bi bi-book"></i>
-              Drafts
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="#">
-              <i class="bi bi-bookmark-check"></i>
-              Published
-            </a>
-          </li>
-        </ul>
-      </div>
+     
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       {% if user.is_active == False %}
@@ -47,7 +20,7 @@
         <div class="col col-lg-8 mb-4 mb-lg-0">
           <h2 class="title text-center">
             Start drafting a
-            <a href="{% url 'article_new'  %}" class="btn btn-primary">
+            <a href="{% url 'article_new'  %}" class="btn b_btn">
               new article.
             </a>
           </h2>
@@ -68,6 +41,35 @@
                 />
                 <h5 class="title">{{ user.get_username }}</h5>
                 Edit Profile <i class="bi bi-pencil-square mb-5 fw-bold"></i>
+                <hr>
+                <div class="position-sticky">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link active fw-bold title text-black" aria-current="page" href="{% url 'profile' %}">
+                        <i class="bi bi-house-heart"></i>
+                        {{ user.get_username }}
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link fw-bold text-black" href="{% url 'articles' user.id %}">
+                        <i class="bi bi-journal-check"></i>
+                        Articles
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link fw-bold text-black" href="{% url 'drafts' user.id %}">
+                        <i class="bi bi-book"></i>
+                        Drafts
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link fw-bold text-black" href="#">
+                        <i class="bi bi-bookmark-check"></i>
+                        Published
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
               <div class="col-md-8">
                 <div class="card-body p-4">

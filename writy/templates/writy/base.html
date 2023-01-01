@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <title>Wild World Tales</title>
     <!-- CSS only -->
     <link
       rel="stylesheet"
@@ -21,20 +21,21 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
     />
-
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Spinnaker&display=swap" rel="stylesheet">
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit%3Awght%40400%3B500%3B600%3B700%3B900&#038;display=swap"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
     />
-    <title>Wild World Tales</title>
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+   </head>
+   <style>
       body {
         background-color: #ffffff;
         color: #000101;
-        font-family: "Outfit", sans-serif !important;
+        font-family: 'Spinnaker', sans-serif !important;
       }
 
       .carousel {
@@ -287,9 +288,6 @@
         margin-bottom: 0;
       }
 
-      /*--------------------------------------------------------------
-        # Blog Sidebar
-        --------------------------------------------------------------*/
       .blog .sidebar {
         padding: 30px;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -583,33 +581,11 @@
         border-top-right-radius: 0;
       }
 
-      a {
-        text-decoration: none;
-        {% comment %} color: #ffffff; {% endcomment %}
-
-        {% comment %} font-size: 18px !important; {% endcomment %}
-      }
-
-      a:hover {
-        text-decoration: underline;
-        {% comment %} color: #ffffff; {% endcomment %}
-      }
-
+    
       .blog_head {
         background-color: #ef5b25;
         color: #ffffff;
       }
-      {% comment %} .nav_link {
-        color: #ffffff;
-      } {% endcomment %}
-
-      {% comment %} .fw-bold {
-        color: #ef5b25;
-      }
-
-      .fw-bold:hover {
-        color: #ef5b25;
-      } {% endcomment %}
 
       .featured {
         height: 250px;
@@ -663,11 +639,7 @@
         background-image: url("https://images.pexels.com/photos/4132326/pexels-photo-4132326.jpeg?cs=srgb&dl=pexels-ketut-subiyanto-4132326.jpg&fm=jpg");
       }
 
-      .nav-item {
-        {% comment %} font-size: 20px; {% endcomment %}
-        {% comment %} font-weight: bold; {% endcomment %}
-      }
-
+  
       .stretched-link:hover {
         color: #ef5b25 !important;
         text-decoration: underline;
@@ -794,12 +766,27 @@
         background-color: #000101;
         color: #ffffff;
       }
+
+      .b_btn {
+        background-color: #000101;
+        color: #ffffff;
+      }
+      .b_btn:hover {
+        background-color: #000101;
+        color: #ffffff;
+      }
+      .splide__slide img {
+          width: 100%;
+          height: 269px;
+          object-fit: cover;
+        }
+
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg dark_bg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Wild World Tales</a>
+        <a class="navbar-brand text-white" href="{% url 'home' %}">Wild World Tales</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -815,13 +802,13 @@
           <ul class="navbar-nav mb-2 mb-lg-0 justify-content-center text-center">
             {% for category in categories %}
             <li class="nav-item">
-              <a class="nav-link active " href="{{base_url}}/topics/{{ category.slug }}">{{ category.title }}</a>
+              <a class="nav-link active text-white" href="{{base_url}}/topics/{{ category.slug }}">{{ category.title }}</a>
             </li>
             {% endfor %}
           </ul>
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a href="{% url 'login' %}" class="nav nav-link  text-black"><i class="bi bi-lock"></i>ACCOUNT</a>
+              <a href="{% url 'login' %}" class="nav nav-link  text-white"><i class="bi bi-lock"></i></a>
             </li>
           </ul>
         </div>  
@@ -842,8 +829,11 @@
                 <h5 class="footer-heading">QUICK LINKS</h5>
                 <ul class="footer-links list-unstyled">
                   <li><a href="{{ base_url}}" class="text-white"><i class="bi bi-chevron-right "></i>Home</a></li>
+                  <br>
                   <li><a href="{{ base_url}}"  class="text-white"><i class="bi bi-chevron-right "></i>About us</a></li>
+                  <br>
                   <li><a href="{{ base_url}}"  class="text-white"><i class="bi bi-chevron-right "></i>Contact</a></li>
+                  <br>
                   <li><a href="{{ base_url}}"   class="text-white"><i class="bi bi-chevron-right "></i>Advertising</a></li>
                 </ul>
               </div>
@@ -852,41 +842,36 @@
                 <ul class="footer-links list-unstyled">
                   {% for category in categories %}
                   <li><a href="{{ base_url}}/topics/{{ category.slug}}" class="text-white"><i class="bi bi-chevron-right"></i>{{ category.title }}</a></li>
+                  <br>
                   {% endfor %}
                 </ul>
               </div>
               <div class="col-lg-4">
                 <h5 class="footer-heading">RECENT</h5>
                 <ul class="footer-links footer-blog-entry list-unstyled">
+                  {% for recent in recents %}
                   <li>
-                    <a href="single-post.html" class="d-flex align-items-center text-white">
-                      <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
+                    <a href="{% url 'article' recent.slug %}" class="d-flex align-items-center text-white">
+                      <img src="{{base_url}}/media/{{ latest.image }}" alt="{{ article.title }}" class="img-fluid me-3">
                       <div>
-                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                        <span>5 Great Startup Tips for Female Founders</span>
+                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{ recent.created_on }}</span></div>
+                        <span>{{ article.title | title }}</span>
                       </div>
                     </a>
                   </li>
-                  <li>
-                    <a href="single-post.html" class="d-flex align-items-center text-white">
-                      <img src="assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
-                      <div>
-                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                        <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>
-                      </div>
-                    </a>
-                  </li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer-legal">
+
+        <div class="footer-legal pt-5">
           <div class="container">
             <div class="row justify-content-between">
               <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                 <div class="copyright">
-                  Wild &copy; 2022 
+                  Wild World Tales &copy; <span id="year"></span>
                 </div>
               </div>
               <div class="col-md-6">
@@ -902,6 +887,14 @@
           </div>
         </div>
       </footer>
+      <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>  	
+      <script>
+	        var editor = new FroalaEditor('#example');		
+      </script>
+      <script>
+        new Splide( '.splide' ).mount();
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+      </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

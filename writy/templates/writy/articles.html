@@ -1,10 +1,9 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 
 <main>
   <div class="album py-2 ">
     <div class="container">
       {% if articles %}
-      <h2 class="title text-center">Stay ahead on {{ article.topic }}</h2>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for article in articles %}
 
@@ -17,10 +16,10 @@
             <div class="card-body">
               <h2 class="title">{{ article.title | title }}</h2>
               <div class="d-flex justify-content-between align-items-center">
-                <a href="{% url 'article' article.slug %}" class="fw-bold">
+                <a href="{% url 'article' article.slug %} " class="fw-bold text-black">
                   Continue reading...
                 </a>
-                <small class="text-muted">9 mins</small>
+                <small class="text-muted">3 mins</small>
               </div>
             </div>
           </div>

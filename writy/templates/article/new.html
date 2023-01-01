@@ -1,15 +1,15 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 <div class="container-fluid">
   <div class="row">
     <nav
       id="sidebarMenu"
       class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse"
     >
-      <div class="position-sticky">
+      <div class="position-sticky pt-5">
         <ul class="nav flex-column">
           <li class="nav-item">
             <a
-              class="nav-link active fw-bold title"
+              class="nav-link active fw-bold title text-black"
               aria-current="page"
               href="{% url 'profile' %}"
             >
@@ -18,19 +18,25 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'articles' user.id %}">
+            <a
+              class="nav-link fw-bold text-black"
+              href="{% url 'articles' user.id %}"
+            >
               <i class="bi bi-journal-check"></i>
               Articles
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-bold" href="{% url 'drafts' user.id %}">
+            <a
+              class="nav-link fw-bold text-black"
+              href="{% url 'drafts' user.id %}"
+            >
               <i class="bi bi-book"></i>
               Drafts
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-bold" href="#">
+            <a class="nav-link fw-bold text-black" href="#">
               <i class="bi bi-bookmark-check"></i>
               Published
             </a>
@@ -54,8 +60,8 @@
         </div>
         {% endif %}
       </div>
-      <div class="text-center">
-        <h1 class="title">Draft now, Publish when you feel like &#128540;</h1>
+      <div class="text-center pt-3">
+        <h3 class="title">Draft now, Publish when you feel like &#128540;</h3>
         <form action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
 
@@ -98,26 +104,28 @@
             </div>
           </div>
           <br />
-          
-          <textarea name="content">
+          <textarea id="example" name="content"></textarea>
+          <!-- <textarea name="content">
             Start Writing..
          </textarea
-          >
+          > -->
           <div class="alert alert-info">
-            <span class="text-info"> Its even better to draft on a PC <i class="bi bi-check"></i></span>
+            <span class="text-info">
+              Its even better to draft on a PC <i class="bi bi-check"></i
+            ></span>
           </div>
-          <button class="w-100 btn btn-primary" type="submit">SAVE</button>
+          <button class="w-100 btn b_btn" type="submit">SAVE</button>
         </form>
       </div>
     </main>
   </div>
   <br />
-  <h1 class="title text-center">
+  <h5 class="title text-center">
     Go Back
-    <a href="{% url 'drafts' user.id %}" class="btn btn-primary">
+    <a href="{% url 'drafts' user.id %}" class="btn b_btn">
       <i class="bi bi-arrow-left-square"></i>
     </a>
-  </h1>
+  </h5>
 </div>
 
 {% endblock %}

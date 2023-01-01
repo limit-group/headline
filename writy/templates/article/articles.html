@@ -1,12 +1,12 @@
-{% extends 'registration/base.html' %} {% block content %}
+{% extends 'writy/base.html' %} {% block content %}
 
-<div class="text-center">
-  <h1 class="title">
+<div class="text-center pt-3">
+  <h3 class="title">
     Start drafting now
-    <a href="{% url 'article_new'  %}" class="btn btn-primary">
+    <a href="{% url 'article_new'  %}" class="btn b_btn">
       new article.
     </a>
-  </h1>
+  </h3>
   <div class="container-fluid">
     <div class="row">
       <nav
@@ -87,31 +87,26 @@
                 </div>
               </div>
               {% endfor %} {% else %}
-              <h2 class="title text-center">
+              <h5 class="title text-center">
                 You have not published any articles yet, once you do they will
                 appear here
-              </h2>
+              </h5>
               <div class="text-center bg-white">
-                <img
-                  src="{{base_url}}/media/not_found.svg"
-                  alt="not found"
-                  class="img-fluid"
-                />
+              
               </div>
             </div>
-
             {% endif %}
           </div>
         </div>
       </main>
     </div>
   </div>
-  <h1 class="title">
+  <h5 class="title text-center">
     Go Back
-    <a href="{% url 'profile'  %}" class="btn btn-primary">
+    <a href="{% url 'profile'  %}" class="btn b_btn">
       <i class="bi bi-arrow-left-square"></i>
     </a>
-  </h1>
+  </h5>
 </div>
 
 {% endblock %}
