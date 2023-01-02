@@ -58,7 +58,7 @@
 
         {% if articles %} {% for article in articles %}
         <article class="blog-post">
-          <a href="{% url 'article' latest.slug %} ">
+          <a href="{% url 'article' article.slug %} ">
             <h5 class="title">{{ article.title |title|truncatechars:23 }}</h5>
           </a>
           <p class="blog-post-meta">
