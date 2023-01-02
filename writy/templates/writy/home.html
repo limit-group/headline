@@ -35,7 +35,7 @@
               src="{{base_url}}/media/{{ latest.image }}"
             />
             <div class="card-body">
-              <h5 class="title text-black">{{ latest.title | title }}</h5>
+              <h5 class="title text-black">{{ latest.title |title|truncatechars:23 }}</h5>
               <div class="d-flex justify-content-between align-items-center">
                 <a
                   href="{% url 'article' latest.slug %} "
@@ -58,13 +58,14 @@
 
         {% if articles %} {% for article in articles %}
         <article class="blog-post">
-          <h5 class="">{{ article.title | title}}</h5>
+          <a href="{% url 'article' latest.slug %} ">
+            <h5 class="title">{{ article.title |title|truncatechars:23 }}</h5>
+          </a>
           <p class="blog-post-meta">
             {{ articles.updated_on }} by
-            <a href="#" class="text-white">{{ article.author }}</a>
+            <small class="text-black">{{ article.author }}</small>
           </p>
-
-          <p>{% autoescape off %} {{ article.content }} {% endautoescape %}</p>
+          <p>{% autoescape off %} {{ article.content | truncatechars:53  }} {% endautoescape %}</p>
         </article>
         {% endfor %} {% endif %}
         <nav class="blog-pagination" aria-label="Pagination">
