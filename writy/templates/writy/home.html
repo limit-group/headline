@@ -59,7 +59,7 @@
         {% if articles %} {% for article in articles %}
         <article class="blog-post">
           <a href="{% url 'article' article.slug %} ">
-            <h5 class="title">{{ article.title |title}}</h5>
+            <h5 class="title text-black">{{ article.title |title}}</h5>
           </a>
           <p class="blog-post-meta">
             {{ articles.updated_on }} by
