@@ -59,13 +59,13 @@
         {% if articles %} {% for article in articles %}
         <article class="blog-post">
           <a href="{% url 'article' article.slug %} ">
-            <h5 class="title">{{ article.title |title|truncatechars:23 }}</h5>
+            <h5 class="title">{{ article.title |title}}</h5>
           </a>
           <p class="blog-post-meta">
             {{ articles.updated_on }} by
             <small class="text-black">{{ article.author }}</small>
           </p>
-          <p>{% autoescape off %} {{ article.content | truncatechars:53  }} {% endautoescape %}</p>
+          <p>{% autoescape off %} {{ article.content | truncatechars:253  }} {% endautoescape %}</p>
         </article>
         {% endfor %} {% endif %}
         <nav class="blog-pagination" aria-label="Pagination">
