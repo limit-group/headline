@@ -1,6 +1,5 @@
 {% extends 'writy/base.html' %} {% load static %} {% block content %}
-<style></style>
-{% if highlights %}
+ {% if highlights %}
 <section id="image-carousel" class="splide" aria-label="Beautiful Wildlife">
   <div class="splide__track">
     <ul class="splide__list">
@@ -9,6 +8,7 @@
         <img
           src="{{base_url}}/media/{{ highlight.image }}"
           alt="{{ highlight.title }}"
+          style="object-fit: cover"
         />
       </li>
       {% endfor %}
@@ -16,7 +16,7 @@
   </div>
 </section>
 {% endif %}
-<div class="dark_bg">
+<div class="">
   <main class="container">
     {% if message %}
     <div class="alert alert-success text-center">
@@ -24,7 +24,7 @@
     </div>
     {% endif %}
     <div class="row mb-2 pt-4">
-      <h3 class="text-center">FEATURED STORIES</h3>
+      <h5 class="text-center">FEATURED STORIES</h5>
       <hr />
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for latest in latests %}
@@ -35,9 +35,12 @@
               src="{{base_url}}/media/{{ latest.image }}"
             />
             <div class="card-body">
-              <h2 class="title text-black">{{ latest.title | title }}</h2>
+              <h5 class="title text-black">{{ latest.title | title }}</h5>
               <div class="d-flex justify-content-between align-items-center">
-                <a href="{% url 'article' latest.slug %} " class="fw-bold text-black">
+                <a
+                  href="{% url 'article' latest.slug %} "
+                  class="text-black btn-outline-secondary"
+                >
                   Continue reading...
                 </a>
                 <small class="text-muted">3 mins</small>
@@ -45,13 +48,13 @@
             </div>
           </div>
         </div>
-        {% endfor %} 
+        {% endfor %}
       </div>
     </div>
 
-    <div class="row g-5">
+    <div class="row g-5 pt-5">
       <div class="col-md-8">
-        <h3 class="pb-4 mb-4 border-bottom title">FROM THE EDITOR</h3>
+        <h5 class="pb-4 mb-4 border-bottom title">FROM THE EDITOR</h5>
 
         {% if articles %} {% for article in articles %}
         <article class="blog-post">
@@ -67,7 +70,7 @@
         <nav class="blog-pagination" aria-label="Pagination">
           <a class="btn b_btn" href="#"> Older </a>
           <a
-            class="btn btn-outline-secondary disabled text-white"
+            class="btn btn-outline-secondary disabled text-black"
             href="#"
             tabindex="-1"
             aria-disabled="true"
@@ -81,6 +84,7 @@
         <div class="position-sticky" style="top: 2rem">
           <div class="p-4 mb-3 rounded">
             <h5 class="title">READ MORE.</h5>
+            <hr />
             <p class="mb-0">
               We know you are talented, you want to report about issues you see
               around, here is a chance for you..
@@ -89,42 +93,44 @@
 
           <div class="p-4">
             <h5 class="title">ARCHIVES</h5>
+            <hr />
             <ol class="list-unstyled mb-0">
               <li>
-                <a href="#" class="text-white">September </a>
+                <a href="#" class="text-black">September </a>
               </li>
               <br />
               <li>
-                <a href="#" class="text-white">August </a>
+                <a href="#" class="text-black">August </a>
               </li>
               <br />
               <li>
-                <a href="#" class="text-white">July </a>
+                <a href="#" class="text-black">July </a>
               </li>
               <br />
               <li>
-                <a href="#" class="text-white">June </a>
+                <a href="#" class="text-black">June </a>
               </li>
               <br />
               <li>
-                <a href="#" class="text-white">May </a>
+                <a href="#" class="text-black">May </a>
               </li>
             </ol>
           </div>
 
           <div class="p-4">
             <h5 class="title">ELSEWHERE</h5>
+            <hr />
             <ol class="list-unstyled">
               <li>
-                <a href="#" class="text-white">March </a>
+                <a href="#" class="text-black">March </a>
               </li>
               <br />
               <li>
-                <a href="#" class="text-white">February </a>
+                <a href="#" class="text-black">February </a>
               </li>
               <br />
               <li>
-                <a href="#" class="text-white">January </a>
+                <a href="#" class="text-black">January </a>
               </li>
             </ol>
           </div>
@@ -133,10 +139,9 @@
     </div>
   </main>
 </div>
+<hr />
 <div class="justify-content-center text-center pt-5 pb-5">
   <p class="lead">Get The Latest Wildlife Stories Delivered To your Inbox</p>
-  <a href="{% url 'subscribe' %}" class="btn btn-outline-secondary"
-    >subscribe</a
-  >
+  <a href="{% url 'subscribe' %}" class="btn b_btn">subscribe</a>
 </div>
 {% endblock %}

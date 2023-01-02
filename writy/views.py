@@ -39,12 +39,13 @@ def home(request):
     articles = Article.objects.filter(status=1, author=1)[:3]
     latest = Article.objects.filter(status=1).order_by("-created_on")[:3]
     recents = Article.objects.filter(status=1).order_by("-created_on")[:2]
+    highlights = Article.objects.filter().order_by("created_on").all()
     context = {}
     context["categories"] = categories
     context["articles"] = articles
     context["latests"] = latest
     context["recents"] = recents
-
+    # context["highlights"] = highlights
 
     return render(request, "writy/home.html", context)
 
@@ -203,7 +204,7 @@ def comment(request, article_pk):
         if form.is_valid():
 
             comment = form.save(commit=False)
-            comment.author = request.user
+            comment.author = "guest"
             comment.article = article
             comment.save()
             success = "your comment was posted!"
